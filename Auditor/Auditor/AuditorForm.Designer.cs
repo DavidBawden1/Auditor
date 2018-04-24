@@ -82,9 +82,9 @@
             // AuditReason_ComboBox
             // 
             this.AuditReason_ComboBox.FormattingEnabled = true;
-            this.AuditReason_ComboBox.Location = new System.Drawing.Point(13, 33);
+            this.AuditReason_ComboBox.Location = new System.Drawing.Point(6, 33);
             this.AuditReason_ComboBox.Name = "AuditReason_ComboBox";
-            this.AuditReason_ComboBox.Size = new System.Drawing.Size(176, 21);
+            this.AuditReason_ComboBox.Size = new System.Drawing.Size(183, 21);
             this.AuditReason_ComboBox.TabIndex = 4;
             // 
             // AuditReason_Label

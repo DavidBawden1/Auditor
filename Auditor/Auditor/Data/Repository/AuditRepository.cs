@@ -1,4 +1,6 @@
 ﻿using Auditor.Data.Models;
+using System;
+using System.Configuration;
 
 namespace Auditor.Data.Repository
 {
@@ -6,7 +8,8 @@ namespace Auditor.Data.Repository
     {
         internal void LogAudit(AuditModel audit)
         {
-            
+            var appsettings = ConfigurationSettings.AppSettings.GetValues("filePath");
+            Console.WriteLine($"{appsettings}");
         }
     }
 }
