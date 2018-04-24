@@ -1,6 +1,6 @@
 ﻿namespace Auditor
 {
-    partial class Form1
+    partial class AuditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.AuditorControls_GroupBox = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
-            // Form1
+            // AuditorControls_GroupBox
+            // 
+            this.AuditorControls_GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AuditorControls_GroupBox.Location = new System.Drawing.Point(0, 0);
+            this.AuditorControls_GroupBox.Name = "AuditorControls_GroupBox";
+            this.AuditorControls_GroupBox.Size = new System.Drawing.Size(344, 235);
+            this.AuditorControls_GroupBox.TabIndex = 0;
+            this.AuditorControls_GroupBox.TabStop = false;
+            this.AuditorControls_GroupBox.Text = "Controls";
+            // 
+            // AuditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 235);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Controls.Add(this.AuditorControls_GroupBox);
+            this.Name = "AuditorForm";
+            this.Text = "Auditor";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox AuditorControls_GroupBox;
     }
 }
 
