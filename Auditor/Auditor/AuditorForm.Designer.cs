@@ -61,6 +61,7 @@
             this.LogAudit_Button.TabIndex = 0;
             this.LogAudit_Button.Text = "Log Audit";
             this.LogAudit_Button.UseVisualStyleBackColor = true;
+            this.LogAudit_Button.Click += new System.EventHandler(this.LogAudit_Button_Click);
             // 
             // AuditLog_RichTextBox
             // 

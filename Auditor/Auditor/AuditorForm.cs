@@ -16,5 +16,10 @@ namespace Auditor
         {
             InitializeComponent();
         }
+
+        private void LogAudit_Button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

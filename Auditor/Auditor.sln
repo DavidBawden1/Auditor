@@ -5,6 +5,28 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auditor", "Auditor\Auditor.csproj", "{CCA43F8B-9963-491A-861C-87319E25CAB2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auditor.Data", "Auditor.Data", "{B4611459-DF94-4E12-BA02-A199575DD514}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{906AD825-6414-463C-BDC1-7FF1DAB8FCD0}"
+	ProjectSection(SolutionItems) = preProject
+		AuditRepository.cs = AuditRepository.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{A667141B-6104-4A57-B036-6BF703AE74CA}"
+	ProjectSection(SolutionItems) = preProject
+		AuditModel.cs = AuditModel.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auditor.Controllers", "Auditor.Controllers", "{8C9AA81B-1905-401A-87E9-9DEAED117F90}"
+	ProjectSection(SolutionItems) = preProject
+		AuditorController.cs = AuditorController.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auditor.ViewModels", "Auditor.ViewModels", "{D556C0A3-504F-4679-AD6A-851463BDF326}"
+	ProjectSection(SolutionItems) = preProject
+		AuditViewModel.cs = AuditViewModel.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +40,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{906AD825-6414-463C-BDC1-7FF1DAB8FCD0} = {B4611459-DF94-4E12-BA02-A199575DD514}
+		{A667141B-6104-4A57-B036-6BF703AE74CA} = {B4611459-DF94-4E12-BA02-A199575DD514}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3540805-7EB6-4083-B4D9-990B76CDFD2D}
