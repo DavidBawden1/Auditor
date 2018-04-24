@@ -29,17 +29,80 @@
         private void InitializeComponent()
         {
             this.AuditorControls_GroupBox = new System.Windows.Forms.GroupBox();
+            this.LogAudit_Button = new System.Windows.Forms.Button();
+            this.AuditLog_RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.Feeling_ComboBox = new System.Windows.Forms.ComboBox();
+            this.AuditReason_ComboBox = new System.Windows.Forms.ComboBox();
+            this.AuditReason_Label = new System.Windows.Forms.Label();
+            this.Feeling_Label = new System.Windows.Forms.Label();
+            this.AuditorControls_GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // AuditorControls_GroupBox
             // 
+            this.AuditorControls_GroupBox.Controls.Add(this.Feeling_Label);
+            this.AuditorControls_GroupBox.Controls.Add(this.AuditReason_Label);
+            this.AuditorControls_GroupBox.Controls.Add(this.AuditReason_ComboBox);
+            this.AuditorControls_GroupBox.Controls.Add(this.Feeling_ComboBox);
+            this.AuditorControls_GroupBox.Controls.Add(this.AuditLog_RichTextBox);
+            this.AuditorControls_GroupBox.Controls.Add(this.LogAudit_Button);
             this.AuditorControls_GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AuditorControls_GroupBox.Location = new System.Drawing.Point(0, 0);
             this.AuditorControls_GroupBox.Name = "AuditorControls_GroupBox";
             this.AuditorControls_GroupBox.Size = new System.Drawing.Size(344, 235);
             this.AuditorControls_GroupBox.TabIndex = 0;
             this.AuditorControls_GroupBox.TabStop = false;
-            this.AuditorControls_GroupBox.Text = "Controls";
+            // 
+            // LogAudit_Button
+            // 
+            this.LogAudit_Button.Location = new System.Drawing.Point(263, 206);
+            this.LogAudit_Button.Name = "LogAudit_Button";
+            this.LogAudit_Button.Size = new System.Drawing.Size(75, 23);
+            this.LogAudit_Button.TabIndex = 0;
+            this.LogAudit_Button.Text = "Log Audit";
+            this.LogAudit_Button.UseVisualStyleBackColor = true;
+            // 
+            // AuditLog_RichTextBox
+            // 
+            this.AuditLog_RichTextBox.Location = new System.Drawing.Point(6, 61);
+            this.AuditLog_RichTextBox.Name = "AuditLog_RichTextBox";
+            this.AuditLog_RichTextBox.Size = new System.Drawing.Size(248, 168);
+            this.AuditLog_RichTextBox.TabIndex = 2;
+            this.AuditLog_RichTextBox.Text = "";
+            // 
+            // Feeling_ComboBox
+            // 
+            this.Feeling_ComboBox.FormattingEnabled = true;
+            this.Feeling_ComboBox.Location = new System.Drawing.Point(198, 34);
+            this.Feeling_ComboBox.Name = "Feeling_ComboBox";
+            this.Feeling_ComboBox.Size = new System.Drawing.Size(56, 21);
+            this.Feeling_ComboBox.TabIndex = 3;
+            // 
+            // AuditReason_ComboBox
+            // 
+            this.AuditReason_ComboBox.FormattingEnabled = true;
+            this.AuditReason_ComboBox.Location = new System.Drawing.Point(13, 33);
+            this.AuditReason_ComboBox.Name = "AuditReason_ComboBox";
+            this.AuditReason_ComboBox.Size = new System.Drawing.Size(176, 21);
+            this.AuditReason_ComboBox.TabIndex = 4;
+            // 
+            // AuditReason_Label
+            // 
+            this.AuditReason_Label.AutoSize = true;
+            this.AuditReason_Label.Location = new System.Drawing.Point(13, 13);
+            this.AuditReason_Label.Name = "AuditReason_Label";
+            this.AuditReason_Label.Size = new System.Drawing.Size(71, 13);
+            this.AuditReason_Label.TabIndex = 5;
+            this.AuditReason_Label.Text = "Audit Reason";
+            // 
+            // Feeling_Label
+            // 
+            this.Feeling_Label.AutoSize = true;
+            this.Feeling_Label.Location = new System.Drawing.Point(195, 16);
+            this.Feeling_Label.Name = "Feeling_Label";
+            this.Feeling_Label.Size = new System.Drawing.Size(59, 13);
+            this.Feeling_Label.TabIndex = 6;
+            this.Feeling_Label.Text = "1-5 Feeling";
             // 
             // AuditorForm
             // 
@@ -49,6 +112,8 @@
             this.Controls.Add(this.AuditorControls_GroupBox);
             this.Name = "AuditorForm";
             this.Text = "Auditor";
+            this.AuditorControls_GroupBox.ResumeLayout(false);
+            this.AuditorControls_GroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -56,6 +121,12 @@
         #endregion
 
         private System.Windows.Forms.GroupBox AuditorControls_GroupBox;
+        private System.Windows.Forms.Button LogAudit_Button;
+        private System.Windows.Forms.RichTextBox AuditLog_RichTextBox;
+        private System.Windows.Forms.Label Feeling_Label;
+        private System.Windows.Forms.Label AuditReason_Label;
+        private System.Windows.Forms.ComboBox AuditReason_ComboBox;
+        private System.Windows.Forms.ComboBox Feeling_ComboBox;
     }
 }
 
