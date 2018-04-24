@@ -51,8 +51,12 @@
     <Compile Include="AuditorForm.Designer.cs">
       <DependentUpon>AuditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AuditController.cs" />
+    <Compile Include="Data\Models\AuditModel.cs" />
+    <Compile Include="Data\Repository\AuditRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AuditViewModel.cs" />
     <EmbeddedResource Include="AuditorForm.resx">
       <DependentUpon>AuditorForm.cs</DependentUpon>
     </EmbeddedResource>

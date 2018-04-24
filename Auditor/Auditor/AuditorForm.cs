@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Auditor.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,7 @@ namespace Auditor
 
         private void LogAudit_Button_Click(object sender, EventArgs e)
         {
-
+            AuditViewModel auditVM = new AuditViewModel { };
         }
     }
 }
