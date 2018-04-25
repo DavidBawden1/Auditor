@@ -2,7 +2,7 @@
 
 namespace Auditor.ViewModels
 {
-    public enum AuditReason { Select, Money, HouseChores, GardenChores, Argument, Conversation, Tiredness, Work }
+    public enum AuditReason { Select, Money, HouseChores, GardenChores, Argument, Conversation, Tiredness, Work, Games }
     public enum FeelingLevel { Select, Angry, Unhappy, Normal, Happy, Awesome }
     public class AuditViewModel
     {

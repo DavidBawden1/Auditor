@@ -82,5 +82,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Auditor.Common.Files\Auditor.Common.Files.csproj">
+      <Project>{162f2e2e-c8a1-481e-af61-4d589647be6b}</Project>
+      <Name>Auditor.Common.Files</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

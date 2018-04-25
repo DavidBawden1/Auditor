@@ -44,6 +44,7 @@ namespace Auditor
 
                 AuditController auditController = new AuditController();
                 auditController.LogAudit(auditVM);
+                MessageBox.Show("Audit Log created");
             }
             catch (ArgumentException e)
             {

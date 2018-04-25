@@ -1,6 +1,8 @@
 ﻿using Auditor.Data.Models;
 using System;
 using System.Configuration;
+using Auditor.Common.Files;
+using System.IO;
 
 namespace Auditor.Data.Repository
 {
@@ -8,8 +10,17 @@ namespace Auditor.Data.Repository
     {
         internal void LogAudit(AuditModel audit)
         {
-            var appsettings = ConfigurationSettings.AppSettings.GetValues("filePath");
-            Console.WriteLine($"{appsettings}");
+            string filePath = ConfigurationSettings.AppSettings["filePath"];
+            if (string.IsNullOrEmpty(filePath)) throw new Exception("The filePath must be configured. Please check the application config file.");
+            FileManager fileManager = new FileManager();
+            try
+            {
+                fileManager.CreateFile(filePath);
+            }
+            catch (IOException e)
+            {
+                throw e;
+            }
         }
     }
 }
