@@ -6,7 +6,7 @@ namespace Auditor.Common.Files
 {
     public class FileManager
     {
-        public bool CreateFile(string inputFilePath)
+        public bool CreateFile(string inputFilePath, DateTime date, string auditReason, string description, string feelingLevel, Guid id)
         {
             string fullPath = Path.GetFullPath(inputFilePath);
             if (string.IsNullOrEmpty(fullPath)) throw new ArgumentException("The filepath cannot be null or empty.");
@@ -15,11 +15,12 @@ namespace Auditor.Common.Files
             {
                 CreateDirectory(fullPath);
             }
+            string fileContent = $"{date.ToString()} {auditReason} {description} {feelingLevel} {id}";
             using (var stream = File.Create(fullPath))
             {
                 try
                 {
-                    Byte[] content = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true).GetBytes("Sample text: You have created a file");
+                    Byte[] content = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true).GetBytes("fileContent");
                     stream.WriteAsync(content, 0, content.Length);
                     return true;
                 }

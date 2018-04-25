@@ -15,7 +15,7 @@ namespace Auditor.Data.Repository
             FileManager fileManager = new FileManager();
             try
             {
-                fileManager.CreateFile(filePath);
+                fileManager.CreateFile(filePath, audit.AuditDate, audit.AuditReason.ToString(),  audit.Description, audit.FeelingLevel.ToString(), audit.Id);
             }
             catch (IOException e)
             {
