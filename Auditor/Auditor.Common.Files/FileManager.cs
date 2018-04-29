@@ -9,20 +9,45 @@ namespace Auditor.Common.Files
     {
         public void CreateFile(string inputFilePath, DateTime date, string auditReason, string description, string feelingLevel, Guid id)
         {
-            string fullPath = Path.GetFullPath(inputFilePath);
-            if (string.IsNullOrEmpty(fullPath)) throw new ArgumentException("The filepath cannot be null or empty.");
-            if (File.Exists(inputFilePath)) throw new IOException($"The file {fullPath} already exists.");
-            if (!Directory.Exists(fullPath))
+            if (string.IsNullOrEmpty(inputFilePath)) throw new ArgumentException("The filepath cannot be null or empty.");
+            string fullPath = string.Empty;
+            string directoryPath = string.Empty;
+            string extension = string.Empty;
+            try
             {
-                CreateDirectory(fullPath);
+                fullPath = Path.GetFullPath(inputFilePath);
+                directoryPath = Path.GetDirectoryName(fullPath);
+                extension = Path.GetExtension(fullPath);
+                if (File.Exists(fullPath)) throw new IOException($"The file {fullPath} already exists.");
+                if (!Directory.Exists(directoryPath))
+                {
+                    CreateDirectory(directoryPath);
+                }
             }
-            string fileContent = $"{date.ToString()} {auditReason} {description} {feelingLevel} {id}";
-            using (var stream = File.Create(fullPath))
+            catch (IOException ex)
+            {
+                throw new IOException($"Failed processing the file. {inputFilePath} {ex}");
+            }
+
+            if (extension.Contains("xml"))
+            {
+                CreateXmlFile(fullPath, date, auditReason, description, feelingLevel, id);
+            }
+            else
+            {
+                string fileContent = $"{date.ToString("yyyy/MM/dd/HH:mm:ss")} {auditReason} {description} {feelingLevel} {id}";
+                CreateFile(fullPath, fileContent);
+            }
+        }
+
+        private void CreateFile(string inputFilePath, string fileContent)
+        {
+            using (var stream = File.Create(inputFilePath))
             {
                 try
                 {
-                    Byte[] content = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true).GetBytes("fileContent");
-                    stream.WriteAsync(content, 0, content.Length);
+                    Byte[] content = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true).GetBytes(fileContent);
+                    stream.WriteAsync(content, 0, fileContent.Length);
                 }
                 catch (IOException)
                 {
@@ -33,15 +58,19 @@ namespace Auditor.Common.Files
 
         public void CreateXmlFile(string inputFilePath, DateTime date, string auditReason, string description, string feelingLevel, Guid id)
         {
-            string fullPath = Path.GetFullPath(inputFilePath);
-            if (string.IsNullOrEmpty(fullPath)) throw new ArgumentException("The filepath cannot be null or empty.");
-            string directoryPath = Path.GetDirectoryName(fullPath);
-            if (File.Exists(inputFilePath)) throw new IOException($"The file {fullPath} already exists.");
-            if (!Directory.Exists(directoryPath))
+            try
             {
-                CreateDirectory(directoryPath);
+                XmlDocument doc = ConstructXmlDocument(date, auditReason, description, feelingLevel, id);
+                doc.Save(inputFilePath);
             }
+            catch (XmlException ex)
+            {
+                throw new XmlException($"Failed to create xml file {inputFilePath} {ex}");
+            }
+        }
 
+        private static XmlDocument ConstructXmlDocument(DateTime date, string auditReason, string description, string feelingLevel, Guid id)
+        {
             XmlDocument doc = new XmlDocument();
             XmlNode declarationNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             doc.AppendChild(declarationNode);
@@ -69,7 +98,7 @@ namespace Auditor.Common.Files
             auditNode.Attributes.Append(dateXml);
 
             auditsNode.AppendChild(auditNode);
-            doc.Save(fullPath);
+            return doc;
         }
 
         internal void CreateDirectory(string filePath)
