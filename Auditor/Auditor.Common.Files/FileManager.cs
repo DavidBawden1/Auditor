@@ -35,10 +35,11 @@ namespace Auditor.Common.Files
         {
             string fullPath = Path.GetFullPath(inputFilePath);
             if (string.IsNullOrEmpty(fullPath)) throw new ArgumentException("The filepath cannot be null or empty.");
+            string directoryPath = Path.GetDirectoryName(fullPath);
             if (File.Exists(inputFilePath)) throw new IOException($"The file {fullPath} already exists.");
-            if (!Directory.Exists(fullPath))
+            if (!Directory.Exists(directoryPath))
             {
-                CreateDirectory(fullPath);
+                CreateDirectory(directoryPath);
             }
 
             XmlDocument doc = new XmlDocument();
@@ -68,7 +69,7 @@ namespace Auditor.Common.Files
             auditNode.Attributes.Append(dateXml);
 
             auditsNode.AppendChild(auditNode);
-            doc.Save(inputFilePath);
+            doc.Save(fullPath);
         }
 
         internal void CreateDirectory(string filePath)
