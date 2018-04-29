@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Xml;
 
 namespace Auditor.Common.Files
 {
     public class FileManager
     {
-        public bool CreateFile(string inputFilePath, DateTime date, string auditReason, string description, string feelingLevel, Guid id)
+        public void CreateFile(string inputFilePath, DateTime date, string auditReason, string description, string feelingLevel, Guid id)
         {
             string fullPath = Path.GetFullPath(inputFilePath);
             if (string.IsNullOrEmpty(fullPath)) throw new ArgumentException("The filepath cannot be null or empty.");
@@ -22,7 +23,6 @@ namespace Auditor.Common.Files
                 {
                     Byte[] content = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true).GetBytes("fileContent");
                     stream.WriteAsync(content, 0, content.Length);
-                    return true;
                 }
                 catch (IOException)
                 {
@@ -31,13 +31,52 @@ namespace Auditor.Common.Files
             }
         }
 
-        internal bool CreateDirectory(string filePath)
+        public void CreateXmlFile(string inputFilePath, DateTime date, string auditReason, string description, string feelingLevel, Guid id)
+        {
+            string fullPath = Path.GetFullPath(inputFilePath);
+            if (string.IsNullOrEmpty(fullPath)) throw new ArgumentException("The filepath cannot be null or empty.");
+            if (File.Exists(inputFilePath)) throw new IOException($"The file {fullPath} already exists.");
+            if (!Directory.Exists(fullPath))
+            {
+                CreateDirectory(fullPath);
+            }
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode declarationNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            doc.AppendChild(declarationNode);
+
+            XmlNode auditsNode = doc.CreateElement("Audits");
+            doc.AppendChild(auditsNode);
+
+            XmlNode auditNode = doc.CreateElement("Audit");
+            auditsNode.AppendChild(auditNode);
+
+            XmlAttribute logIdXml = doc.CreateAttribute("AuditId");
+            logIdXml.Value = id.ToString();
+            auditNode.Attributes.Append(logIdXml);
+            XmlAttribute reasonXml = doc.CreateAttribute("AuditReason");
+            reasonXml.Value = auditReason;
+            auditNode.Attributes.Append(reasonXml);
+            XmlAttribute descriptionXml = doc.CreateAttribute("AuditDescription");
+            descriptionXml.Value = description;
+            auditNode.Attributes.Append(descriptionXml);
+            XmlAttribute feelingLevelXml = doc.CreateAttribute("AuditFeeling");
+            feelingLevelXml.Value = feelingLevel;
+            auditNode.Attributes.Append(feelingLevelXml);
+            XmlAttribute dateXml = doc.CreateAttribute("AuditDate");
+            dateXml.Value = date.ToString("yyyy/dd/MM/HH:mm:ss");
+            auditNode.Attributes.Append(dateXml);
+
+            auditsNode.AppendChild(auditNode);
+            doc.Save(inputFilePath);
+        }
+
+        internal void CreateDirectory(string filePath)
         {
             if (string.IsNullOrEmpty(filePath)) throw new ArgumentException("The filepath cannot be null or empty.");
             try
             {
                 Directory.CreateDirectory(filePath);
-                return true;
             }
             catch (IOException e)
             {
